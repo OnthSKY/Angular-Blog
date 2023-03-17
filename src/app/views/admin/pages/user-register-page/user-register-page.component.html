@@ -1,0 +1,45 @@
+<div class="container-fluid">
+    <div class="row text-center">
+        <h2 class="alert alert-info">Kullanıcı Kayıt</h2>
+    </div>
+    <div class="row mt-4">
+        <form [formGroup]="registerForm" (ngSubmit)="signUp()">
+            <input type="text" placeholder="Kullanıcı adını giriniz ..." class="form-control p-2 mb-3"
+                formControlName="userName" [ngClass]="checkIsValid('userName')">
+            <div class="alert alert-danger" *ngIf="checkErrorExist('userName')">
+                <ul *ngFor="let error of getErrors('userName')">
+                    {{error}}
+                </ul>
+            </div>
+
+            <input type="password" placeholder="Kullanıcı şifresini giriniz ..." class="form-control p-2 mb-3"
+                formControlName="userPassword" [ngClass]="checkPasswordsValid()">
+            <div class="alert alert-danger" *ngIf="checkErrorExist('userPassword')">
+                <ul *ngFor="let error of getErrors('userPassword')">
+                    {{error}}
+                </ul>
+            </div>
+            <!-- <div class="alert alert-info">
+                <ul> Value : {{ registerForm.get('userPassword')?.value }} </ul>
+                <ul> Errors : {{ registerForm.get('userPassword')?.errors | json }}  </ul>                    
+            </div> -->
+
+            <input type="password" placeholder="Kullanıcı şifresini tekrar giriniz ..." class="form-control p-2 mb-3"
+                formControlName="userPasswordCheck"  [ngClass]="checkPasswordsValid()">
+                <!-- <div class="alert alert-info">
+                    <ul> Value : {{ registerForm.get('userPasswordCheck')?.value }} </ul>
+                    <ul> Errors : {{ registerForm.get('userPasswordCheck')?.errors | json }}  </ul>                    
+                </div> -->
+    
+            <div class="alert alert-danger" *ngIf="checkErrorExist('userPasswordCheck')">
+                <ul *ngFor="let error of getErrors('userPasswordCheck')">
+                    {{error}}
+                </ul>
+            </div>
+            <div class="text-center mb-3">
+                <button class="btn btn-outline-success">Kayıt Et</button>
+            </div>
+
+        </form>
+    </div>
+</div>
